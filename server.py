@@ -29,6 +29,24 @@ def convert_to_SI(units):
     
     pass
 
+def parse_units_input(units):
+
+    # for case of no math input
+    if ('/' not in units
+        and '*' not in units
+        and '(' not in units
+        and ')' not in units):
+        return SI_CONVERSTIONS[units]
+
+def to_json(converted_units):
+
+    name, multiplication_factor = converted_units[0], converted_units[1]
+    multiplication_factor = format(multiplication_factor, '.14f')
+
+    return { 'unit_name': name,
+             'multiplication_factor': multiplication_factor}
+
+
 
 if __name__ == '__main__':
     app.run(port=5001, host='0.0.0.0', debug=True)
